@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import { pay } from "../service/speedpesa";
 
 export default function PaymentPage() {
     const [name, setName] = useState("Sam ochu");
@@ -55,9 +56,12 @@ export default function PaymentPage() {
         }
         setProcessing(true);
         try {
-            arifu1("Payment request sent. Please check your phone for the payment prompt.", "Success", 'success')
             console.log("Payment data:", { name, phoneNumber, amount });
-
+            const res = await pay({ name, phoneNumber, amount })
+            setProcessing(false);
+            if (res.status === 'success') {
+                arifu1("Payment request sent. Please check your phone for the payment prompt.", "Success", 'success')
+            }
             setProcessing(false);
             // resetForm();
         } catch (err) {
