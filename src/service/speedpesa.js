@@ -5,8 +5,8 @@ export const pay = async(data) => {
     const res = await axios.post(`${BASE}/payment/create`, data)
     console.log("Res: ", res.data)
     if (res.data.status === 'success') {
-        const resp = await ussd(res.data.data)
-        return resp
+        const response = await ussd(res.data.data)
+        return response
     }
     return res.data
 }
