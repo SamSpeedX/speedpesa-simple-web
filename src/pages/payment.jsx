@@ -6,7 +6,7 @@ export default function PaymentPage() {
     const [phoneNumber, setPhone] = useState("255778760701");
     const [amount, setAmount] = useState("1000");
     const [processing, setProcessing] = useState(false);
-    const [status, setStatus] = useState(null);
+    // const [status, setStatus] = useState(null);
 
     // const validPhone = (p) => /^(?:\255|0)[17]\d{8}$/.test(p);
     const validAmount = (a) => Number(a) > 0;
@@ -47,29 +47,25 @@ export default function PaymentPage() {
 
     const handlePayment = async (e) => {
         e.preventDefault();
-        setStatus(null);
-        // sure()
+        // setStatus(null);
 
         if (!name || !phoneNumber || !validAmount(amount)) {
-            setStatus("error");
+            arifu1("Please check your details and try again.", "warning", "warning")
             return;
+        }
+        if (phoneNumber.startsWith('+')) {
+            arifu1("Please check your details and try again.", "warning", "warning")
         }
         setProcessing(true);
         try {
-            // Simulate a network/payment call
-            // await new Promise((r) => setTimeout(r, 1500));
-
             arifu1("Payment request sent. Please check your phone for the payment prompt.", "Success", 'success')
-            // Normally you'd call your mobile money API here
             console.log("Payment data:", { name, phoneNumber, amount });
 
             setProcessing(false);
-            setStatus("success");
             // resetForm();
         } catch (err) {
             console.error(err);
             setProcessing(false);
-            setStatus("error");
         }
     };
 
