@@ -6,8 +6,6 @@ export default function PaymentPage() {
     const [phoneNumber, setPhone] = useState("255778760701");
     const [amount, setAmount] = useState("1000");
     const [processing, setProcessing] = useState(false);
-    // const [status, setStatus] = useState(null);
-
     // const validPhone = (p) => /^(?:\255|0)[17]\d{8}$/.test(p);
     const validAmount = (a) => Number(a) > 0;
 
@@ -47,7 +45,6 @@ export default function PaymentPage() {
 
     const handlePayment = async (e) => {
         e.preventDefault();
-        // setStatus(null);
 
         if (!name || !phoneNumber || !validAmount(amount)) {
             arifu1("Please check your details and try again.", "warning", "warning")
@@ -135,17 +132,6 @@ export default function PaymentPage() {
                                 {processing ? "Processing..." : `Pay TZS ${amount || "0.00"}`}
                             </button>
                         </div>
-
-                        {/* {status === "success" && (
-                            <div className="mt-3 text-sm text-green-700 bg-green-50 border border-green-100 rounded p-2">
-                                Payment request sent. Please check your phone for the payment prompt.
-                            </div>
-                        )}
-                        {status === "error" && (
-                            <div className="mt-3 text-sm text-red-700 bg-red-50 border border-red-100 rounded p-2">
-                                Please check your details and try again.
-                            </div>
-                        )} */}
                     </form>
                 </div>
             </div>
